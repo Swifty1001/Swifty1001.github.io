@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support – Faux</title>
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --card:#11121a;
+      --text:#f5f5f7;
+      --muted:#b8b8c2;
+      --gold:#c8a96a; /* champagne-ish gold */
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 800px at 50% 0%, rgba(200,169,106,.12), transparent 50%),
+                  linear-gradient(180deg, #07070a 0%, var(--bg) 100%);
+      color:var(--text);
+    }
+    .wrap{
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom: 18px;
+    }
+    .logo{
+      width:40px;height:40px;
+      border-radius:12px;
+      background: linear-gradient(145deg, rgba(200,169,106,.35), rgba(255,255,255,.08));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;
+      color:var(--gold);
+      letter-spacing:.5px;
+    }
+    h1{
+      margin:0;
+      font-size: 34px;
+      letter-spacing:-.02em;
+    }
+    p{
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .card{
+      margin-top: 22px;
+      background: rgba(17,18,26,.85);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 720px){
+      .grid{grid-template-columns: 1fr;}
+    }
+    label{
+      display:block;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 10px 0 6px;
+    }
+    input, textarea, select{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.28);
+      color: var(--text);
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(200,169,106,.55);
+      box-shadow: 0 0 0 4px rgba(200,169,106,.15);
+    }
+    textarea{
+      min-height: 160px;
+      resize: vertical;
+    }
+    .row{
+      margin-top: 14px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #0b0b0f;
+      background: linear-gradient(135deg, rgba(200,169,106,1), rgba(235,215,160,1));
+      box-shadow: 0 10px 28px rgba(200,169,106,.18);
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn.secondary{
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow:none;
+    }
+    .fine{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+    .pill{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+    }
+    .status{
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="brand">
+      <div class="logo">F</div>
+      <div>
+        <h1>Faux Support</h1>
+        <p>Need help, found a bug, or have a suggestion? Send it here — it will open a pre-filled GitHub support ticket.</p>
+      </div>
+    </div>
+
+    <section class="card" aria-labelledby="support-form">
+      <div class="row" style="margin-top:0;">
+        <span class="pill">Support tickets are created as GitHub Issues</span>
+        <a class="pill" id="issuesLink" href="#" target="_blank" rel="noopener">View existing tickets</a>
+      </div>
+
+      <h2 id="support-form" style="margin:14px 0 0; font-size:18px;">Submit a request</h2>
+
+      <form id="form">
+        <div class="grid">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" placeholder="Your name" autocomplete="name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <label for="type">Type</label>
+            <select id="type" name="type">
+              <option>Bug</option>
+              <option>Help</option>
+              <option>Feature Request</option>
+              <option>Feedback</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="version">App version (optional)</label>
+            <input id="version" name="version" placeholder="e.g., 1.0.0" />
+          </div>
+        </div>
+
+        <label for="subject">Subject</label>
+        <input id="subject" name="subject" required placeholder="Short summary (e.g., Faux Pay success screen)" />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required placeholder="What happened? Steps to reproduce? What did you expect?"></textarea>
+
+        <div class="row">
+          <button class="btn" type="submit" aria-label="Create GitHub support ticket">
+            Submit Ticket
+          </button>
+          <button class="btn secondary" type="button" id="copyBtn">
+            Copy Message
+          </button>
+        </div>
+
+        <div class="fine">
+          This opens GitHub with your request pre-filled. For privacy, avoid including passwords or sensitive info.
+        </div>
+        <div class="status" id="status"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // ✅ CHANGE THESE:
+    const GITHUB_OWNER = "Swifty1001";
+    const GITHUB_REPO  = "Swifty1001.github.io";
+    // Optional: add a label to help you triage, e.g. "support"
+    const DEFAULT_LABELS = ["support"]; // you can leave empty []
+
+    const issuesUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues`;
+    const newIssueUrl = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/issues/new`;
+
+    document.getElementById("issuesLink").href = issuesUrl;
+
+    const statusEl = document.getElementById("status");
+    const showStatus = (msg) => {
+      statusEl.textContent = msg;
+      statusEl.style.display = "block";
+      setTimeout(() => statusEl.style.display = "none", 5000);
+    };
+
+    const buildIssue = ({ name, email, type, version, subject, message }) => {
+      const title = `[${type}] ${subject}`.trim();
+
+      const bodyLines = [
+        `**Name:** ${name || "—"}`,
+        `**Email:** ${email || "—"}`,
+        `**Type:** ${type || "—"}`,
+        `**App Version:** ${version || "—"}`,
+        ``,
+        `---`,
+        ``,
+        message || "—"
+      ];
+
+      const params = new URLSearchParams();
+      params.set("title", title);
+      params.set("body", bodyLines.join("\n"));
+      if (DEFAULT_LABELS.length) params.set("labels", DEFAULT_LABELS.join(","));
+
+      return `${newIssueUrl}?${params.toString()}`;
+    };
+
+    document.getElementById("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const data = {
+        name:    document.getElementById("name").value.trim(),
+        email:   document.getElementById("email").value.trim(),
+        type:    document.getElementById("type").value,
+        version: document.getElementById("version").value.trim(),
+        subject: document.getElementById("subject").value.trim(),
+        message: document.getElementById("message").value.trim(),
+      };
+
+      const url = buildIssue(data);
+
+      // Opens GitHub "New Issue" page with pre-filled content
+      window.open(url, "_blank", "noopener,noreferrer");
+      showStatus("Opened GitHub to create your support ticket. Click “Submit new issue” to finish.");
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const payload = `Subject: ${subject}\n\n${message}`;
+
+      try {
+        await navigator.clipboard.writeText(payload);
+        showStatus("Copied to clipboard.");
+      } catch {
+        showStatus("Could not access clipboard. You can manually select and copy.");
+      }
+    });
+  </script>
+</body>
+</html>
